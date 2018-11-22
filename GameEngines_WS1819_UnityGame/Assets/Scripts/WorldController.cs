@@ -13,6 +13,6 @@ public class WorldController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.RotateAround(new Vector3(0,-7,0), Vector3.forward, 0.5f * rotationSpeed);
+		transform.RotateAround(new Vector3(0,-8,0), Vector3.forward, 0.5f * rotationSpeed);
 	}
 }
