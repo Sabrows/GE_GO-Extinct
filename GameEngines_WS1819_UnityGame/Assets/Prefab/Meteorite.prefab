@@ -113,7 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crater: {fileID: 1702753096751990, guid: 36c50b1d040ecf64b860b832f3b066e0, type: 2}
-  worldScript: {fileID: 0}
 --- !u!135 &135935362116824306
 SphereCollider:
   m_ObjectHideFlags: 1
