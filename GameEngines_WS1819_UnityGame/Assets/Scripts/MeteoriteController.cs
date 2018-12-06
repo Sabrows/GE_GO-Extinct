@@ -7,8 +7,12 @@ public class MeteoriteController : MonoBehaviour
 
     [SerializeField]
     private GameObject crater;
+    [SerializeField]
+    private GameObject world;
+
     bool hasCollided;
-    ContactPoint collPos;
+    ContactPoint2D collPos;
+
 
 
     // Use this for initialization
@@ -20,7 +24,7 @@ public class MeteoriteController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (transform.position.y < -20)
         {
             Destroy(this.gameObject);
@@ -29,13 +33,24 @@ public class MeteoriteController : MonoBehaviour
         else if (hasCollided)
         {
             Destroy(this.gameObject);
-            Instantiate(crater, collPos.point, Quaternion.identity);
+           // Instantiate(crater, collPos.point, Quaternion.identity);
         }
+        
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        hasCollided = true;
-        collPos = collision.contacts[0];
+        if (collider.tag == "Blade")
+        {
+            Debug.Log("Collided with meteorite");
+            Destroy(gameObject);
+        }
+        else if (collider.tag == "Earth")
+        {
+            hasCollided = true;
+
+            Instantiate(crater, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+
+        }
     }
 }
