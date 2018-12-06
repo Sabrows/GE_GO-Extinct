@@ -10,11 +10,15 @@ public class MeteoriteController : MonoBehaviour
     bool hasCollided;
     ContactPoint collPos;
 
+    public WorldController worldScript;
+
 
     // Use this for initialization
     void Start()
     {
+        worldScript = GameObject.FindObjectOfType(typeof(WorldController)) as WorldController;
 
+        
     }
 
     // Update is called once per frame
@@ -37,5 +41,7 @@ public class MeteoriteController : MonoBehaviour
     {
         hasCollided = true;
         collPos = collision.contacts[0];
+        worldScript.TakeDamage(10);
+        
     }
 }
