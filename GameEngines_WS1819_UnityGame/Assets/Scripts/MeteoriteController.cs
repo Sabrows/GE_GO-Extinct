@@ -13,12 +13,15 @@ public class MeteoriteController : MonoBehaviour
     bool hasCollided;
     ContactPoint2D collPos;
 
+    public WorldController worldScript;
 
 
     // Use this for initialization
     void Start()
     {
+        worldScript = GameObject.FindObjectOfType(typeof(WorldController)) as WorldController;
 
+        
     }
 
     // Update is called once per frame
