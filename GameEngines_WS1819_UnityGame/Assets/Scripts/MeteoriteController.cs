@@ -13,18 +13,20 @@ public class MeteoriteController : MonoBehaviour
     bool hasCollided;
     ContactPoint2D collPos;
 
+    public WorldController worldScript;
 
 
     // Use this for initialization
     void Start()
     {
+        worldScript = GameObject.FindObjectOfType(typeof(WorldController)) as WorldController;
+
 
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+
         if (transform.position.y < -20)
         {
             Destroy(this.gameObject);
@@ -33,9 +35,9 @@ public class MeteoriteController : MonoBehaviour
         else if (hasCollided)
         {
             Destroy(this.gameObject);
-           // Instantiate(crater, collPos.point, Quaternion.identity);
+            // Instantiate(crater, collPos.point, Quaternion.identity);
         }
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -50,6 +52,7 @@ public class MeteoriteController : MonoBehaviour
             hasCollided = true;
 
             Instantiate(crater, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+            worldScript.TakeDamage(10);
 
         }
     }
