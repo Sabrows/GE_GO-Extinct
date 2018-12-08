@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 71e9ebc1f4f724bd8845cdd71a91ebc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134,3 +134,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crater: {fileID: 1702753096751990, guid: 36c50b1d040ecf64b860b832f3b066e0, type: 2}
   world: {fileID: 0}
+  worldScript: {fileID: 0}

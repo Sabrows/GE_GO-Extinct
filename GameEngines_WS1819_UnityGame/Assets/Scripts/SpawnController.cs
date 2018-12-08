@@ -15,8 +15,8 @@ public class SpawnController : MonoBehaviour
     void SpawnObject()
     {
 
-        GameObject meteorite = Instantiate(objectReference, new Vector3(Random.Range(-6, 6), 20, 0), Quaternion.identity) as GameObject;
-        meteorite.GetComponent<Rigidbody>().AddForce(throwForce, ForceMode.Impulse);
+        GameObject meteorite = Instantiate(objectReference, new Vector3(Random.Range(-3, 3), 20, 0), Quaternion.identity) as GameObject;
+        meteorite.GetComponent<Rigidbody2D>().AddForce(throwForce, ForceMode2D.Impulse);
 
     }
 }
