@@ -5,7 +5,7 @@ public class SpawnController : MonoBehaviour
 {
     [SerializeField]
     private GameObject objectReference;
-    //private Vector3 throwForce = new Vector3(0, -18, 0);
+    private Vector3 throwForce = new Vector3(0, -18, 0);
 
     void Start()
     {
@@ -15,8 +15,8 @@ public class SpawnController : MonoBehaviour
     void SpawnObject()
     {
 
-        //GameObject meteorite = Instantiate(objectReference, new Vector3(Random.Range(-6, 6), 20, 0), Quaternion.identity) as GameObject;
-        //meteorite.GetComponent<Rigidbody>().AddForce(throwForce, ForceMode.Impulse);
+        GameObject meteorite = Instantiate(objectReference, new Vector3(Random.Range(-6, 6), 20, 0), Quaternion.identity) as GameObject;
+        meteorite.GetComponent<Rigidbody>().AddForce(throwForce, ForceMode.Impulse);
 
     }
 }
