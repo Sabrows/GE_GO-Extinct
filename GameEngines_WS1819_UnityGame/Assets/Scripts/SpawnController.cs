@@ -5,7 +5,7 @@ public class SpawnController : MonoBehaviour
 {
     [SerializeField]
     private GameObject objectReference;
-    private Vector3 throwForce = new Vector3(0, -18, 0);
+    private Vector3 throwForce = new Vector3(0, 5, 0);
 
     void Start()
     {

@@ -97,7 +97,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -134,4 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crater: {fileID: 1702753096751990, guid: 36c50b1d040ecf64b860b832f3b066e0, type: 2}
   world: {fileID: 0}
+  brokenMeteor: {fileID: 1172383728702342, guid: 6f87d9eafc30c4de0a4c5fe789149cb4,
+    type: 2}
   worldScript: {fileID: 0}

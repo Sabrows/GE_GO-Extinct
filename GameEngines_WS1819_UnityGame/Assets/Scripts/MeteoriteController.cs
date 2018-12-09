@@ -9,6 +9,9 @@ public class MeteoriteController : MonoBehaviour
     private GameObject crater;
     [SerializeField]
     private GameObject world;
+    
+    [SerializeField]
+    private GameObject brokenMeteor;
 
     bool hasCollided;
     ContactPoint2D collPos;
@@ -45,6 +48,7 @@ public class MeteoriteController : MonoBehaviour
         if (collider.tag == "Blade")
         {
             Debug.Log("Collided with meteorite");
+            Instantiate(brokenMeteor, transform.position,transform.rotation);
             Destroy(gameObject);
         }
         else if (collider.tag == "Earth")
