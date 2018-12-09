@@ -10,6 +10,8 @@ public class WorldController : MonoBehaviour
     [Header("Health")]
     [SerializeField]
     private float health;
+    [SerializeField]
+    private float currCountdownValue;
 
     [SerializeField]
     private float startHealth = 100f;
@@ -35,12 +37,39 @@ public class WorldController : MonoBehaviour
     void Start()
     {
         health = startHealth;
+        StartCoroutine(StartCountdown());
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.RotateAround(new Vector3(0, -7.37f, 0), Vector3.forward, 0.5f * rotationSpeed);
+    }
+
+    public IEnumerator StartCountdown(float countdownValue = 60)
+    {
+        currCountdownValue = countdownValue;
+
+        while (currCountdownValue >= 0)
+        {
+            if (currCountdownValue == 0 && healthBar.fillAmount > 0)
+            {
+                Destroy(spawnController);
+                Destroy(jurassicWorld);
+                LoadGameWinScene();
+
+            }
+            else if (currCountdownValue == 0 && healthBar.fillAmount == 0)
+            {
+                Destroy(spawnController);
+                Destroy(jurassicWorld);
+                LoadGameOverScene();
+            }
+
+            Debug.Log("Countdown: " + currCountdownValue);
+            yield return new WaitForSeconds(1.0f);
+            currCountdownValue--;
+        }
     }
 
     public void TakeDamage(float dmgValue)
@@ -92,5 +121,11 @@ public class WorldController : MonoBehaviour
     {
         //Add Endscreen
         SceneManager.LoadScene("GameOver");
+    }
+
+    public void LoadGameWinScene()
+    {
+        //Add Endscreen
+        SceneManager.LoadScene("GameWin");
     }
 }
