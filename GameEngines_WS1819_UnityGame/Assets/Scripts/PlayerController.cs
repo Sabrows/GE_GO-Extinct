@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    /*
 	[SerializeField]
 	private GameObject cutable;
 	// Use this for initialization
@@ -23,4 +24,5 @@ public class PlayerController : MonoBehaviour {
 
 		//Collider abfrage
 	}
+    */
 }

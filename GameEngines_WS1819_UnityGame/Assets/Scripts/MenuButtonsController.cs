@@ -11,8 +11,8 @@ public class MenuButtonsController : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    public void LoadSettings()
+    public void LoadMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 }

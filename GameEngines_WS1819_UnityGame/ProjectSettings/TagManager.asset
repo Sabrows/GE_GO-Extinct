@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Blade
   - Earth
+  - BossMeteorite
+  - Explosion
+  - Health
   layers:
   - Default
   - TransparentFX

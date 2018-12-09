@@ -4,19 +4,24 @@ using System.Collections;
 public class SpawnController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject objectReference;
-    private Vector3 throwForce = new Vector3(0, 5, 0);
+    private GameObject meteorite;
+
+    public float distFromCamera = 10.0f;
 
     void Start()
     {
-        InvokeRepeating("SpawnObject", 1f, 3);
+        InvokeRepeating("SpawnObject", 1f, 1.5f);
     }
 
     void SpawnObject()
     {
 
-        GameObject meteorite = Instantiate(objectReference, new Vector3(Random.Range(-3, 3), 20, 0), Quaternion.identity) as GameObject;
-        meteorite.GetComponent<Rigidbody2D>().AddForce(throwForce, ForceMode2D.Impulse);
+        Vector3 spawnPos = new Vector3(Random.value, 1.1f, distFromCamera);
+        spawnPos = Camera.main.ViewportToWorldPoint(spawnPos);
+
+        Instantiate(meteorite, spawnPos, Quaternion.identity);
+        meteorite.GetComponent<Rigidbody2D>().drag = 1f;
+
 
     }
 }

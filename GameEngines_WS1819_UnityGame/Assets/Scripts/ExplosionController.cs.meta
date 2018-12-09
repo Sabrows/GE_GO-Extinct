@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: 095a9f17c5b62ba42b9f0e75803e9319
+guid: e0388e3ed0ff4264086160ce0533f591
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - boom: {instanceID: 0}
-  - brokenMeteor: {instanceID: 0}
-  - worldScript: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

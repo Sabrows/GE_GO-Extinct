@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraterController : MonoBehaviour
+public class ExplosionController : MonoBehaviour
 {
 
     // Use this for initialization
@@ -15,7 +15,5 @@ public class CraterController : MonoBehaviour
     void LateUpdate()
     {
         Destroy(this.gameObject, 2f);
-
     }
-
 }

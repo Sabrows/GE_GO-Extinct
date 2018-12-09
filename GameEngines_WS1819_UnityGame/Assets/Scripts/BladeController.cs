@@ -46,33 +46,56 @@ public class BladeController : MonoBehaviour
 
     void UpdateCut()
     {
-        Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        rb.position = newPosition;
-
-        float velocity = (newPosition - previousPos).magnitude * Time.deltaTime;
-        if (velocity > minCuttingVelocity)
+        if (this.gameObject.GetComponent<CircleCollider2D>() != null)
         {
-            circleCollider.enabled = true;
+            Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            rb.position = newPosition;
+
+            float velocity = (newPosition - previousPos).magnitude * Time.deltaTime;
+            if (velocity > minCuttingVelocity)
+            {
+                circleCollider.enabled = true;
+            }
+            else
+            {
+                circleCollider.enabled = false;
+            }
+            previousPos = newPosition;
         }
         else
         {
-            circleCollider.enabled = false;
+            Debug.Log("Destroyed Component in Blade GameObject");
         }
-        previousPos = newPosition;
+
     }
 
     void StartCut()
     {
-        isCutting = true;
-        currentBladeTrail = Instantiate(bladeTrailPrefab, transform);
-        circleCollider.enabled = false;
+        if (this.gameObject.GetComponent<CircleCollider2D>() != null)
+        {
+            isCutting = true;
+            currentBladeTrail = Instantiate(bladeTrailPrefab, transform);
+            circleCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Destroyed Component in Blade GameObject");
+        }
+
     }
 
     void StopCut()
     {
-        isCutting = false;
-        currentBladeTrail.transform.SetParent(null);
-        Destroy(currentBladeTrail, 0.5f);
-        circleCollider.enabled = false;
+        if (this.gameObject.GetComponent<CircleCollider2D>() != null)
+        {
+            isCutting = false;
+            currentBladeTrail.transform.SetParent(null);
+            Destroy(currentBladeTrail, 0.5f);
+            circleCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Destroyed Component in Blade GameObject");
+        }
     }
 }

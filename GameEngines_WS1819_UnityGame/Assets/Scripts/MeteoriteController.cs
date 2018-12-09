@@ -1,29 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MeteoriteController : MonoBehaviour
 {
 
+    //[SerializeField]
+    //private GameObject crater;
     [SerializeField]
-    private GameObject crater;
-    [SerializeField]
-    private GameObject world;
-    
+    private ParticleSystem boom;
+
     [SerializeField]
     private GameObject brokenMeteor;
 
+    [SerializeField]
+    private GameObject blade;
+
     bool hasCollided;
-    ContactPoint2D collPos;
 
     public WorldController worldScript;
-
 
     // Use this for initialization
     void Start()
     {
         worldScript = GameObject.FindObjectOfType(typeof(WorldController)) as WorldController;
-
+        blade = GameObject.FindGameObjectWithTag("Blade") as GameObject;
 
     }
     // Update is called once per frame
@@ -45,19 +47,28 @@ public class MeteoriteController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Blade")
+        if (blade.GetComponent<CircleCollider2D>() != null)
         {
-            Debug.Log("Collided with meteorite");
-            Instantiate(brokenMeteor, transform.position,transform.rotation);
-            Destroy(gameObject);
+            if (collider.tag == "Blade")
+            {
+                //Debug.Log("Collided with meteorite");
+                Instantiate(brokenMeteor, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
+            else if (collider.tag == "Earth")
+            {
+                hasCollided = true;
+
+                //Instantiate(crater, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+                Instantiate(boom, new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
+
+                worldScript.TakeDamage(10);
+            }
         }
-        else if (collider.tag == "Earth")
+        else
         {
-            hasCollided = true;
-
-            Instantiate(crater, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
-            worldScript.TakeDamage(10);
-
+            Debug.Log("Destroyed Component in Blade GameObject");
         }
     }
 }
+

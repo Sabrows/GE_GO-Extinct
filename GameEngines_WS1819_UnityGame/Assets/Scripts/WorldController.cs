@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WorldController : MonoBehaviour
 {
 
     [Header("Health")]
+    [SerializeField]
     private float health;
 
     [SerializeField]
@@ -20,6 +22,14 @@ public class WorldController : MonoBehaviour
 
     [SerializeField]
     private GameObject jurassicWorld;
+    [SerializeField]
+    private GameObject spawnController;
+
+    [Header("Boss")]
+    [SerializeField]
+    private GameObject bossMeteorite;
+    [SerializeField]
+    private GameObject blade;
 
     // Use this for initialization
     void Start()
@@ -36,24 +46,51 @@ public class WorldController : MonoBehaviour
     public void TakeDamage(float dmgValue)
     {
 
-        Debug.Log(dmgValue);
+        //Debug.Log(dmgValue);
         health -= dmgValue;
-        Debug.Log(health);
+        //Debug.Log(health);
 
         healthBar.fillAmount = health / startHealth;
 
-        if (health <= 0)
+        if (health == 0)
         {
-            Debug.Log("Game ends");
-            EndGame();
+            //Debug.Log("Game ends");
+            SpawnBoss(bossMeteorite);
+        }
+        if (healthBar.fillAmount <= 0.5 && healthBar.fillAmount > 0.3)
+        {
+            Color orange = new Color(1, 1, 0);
+            healthBar.color = orange;
+        }
+        else if (healthBar.fillAmount <= 0.3)
+        {
+            healthBar.color = Color.red;
+        }
+
+    }
+
+    private void SpawnBoss(GameObject bM)
+    {
+        Destroy(spawnController);
+        Instantiate(bossMeteorite, new Vector3(0, 8, 0), Quaternion.identity);
+        bossMeteorite.GetComponent<Rigidbody2D>().drag = 1f;
+        Destroy(blade.GetComponent<CircleCollider2D>());
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "BossMeteorite")
+        {
+
+            Destroy(jurassicWorld);
+
+            LoadGameOverScene();
         }
     }
 
-    public void EndGame()
+    public void LoadGameOverScene()
     {
-        //Destroy Earth
-        Destroy(jurassicWorld);
-
         //Add Endscreen
+        SceneManager.LoadScene("GameOver");
     }
 }
