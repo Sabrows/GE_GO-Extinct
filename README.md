@@ -17,6 +17,11 @@ Assets/3D-Models:
 
 - (FREE) Asteroid -> Artist: Marco Lopiano, Seite: TurboSquid (https://www.turbosquid.com/FullPreview/Index.cfm/ID/1051001)
 
+- (FREE) Low Poly Pack (Trees, Rock) -> Artist: Broken Vector, Unity Asset Store
+
+- (FREE) Farland Skys (Skybox) -> Artist: Borodar , Unity Asset Store
+
+
 
 
 Tutorials:
