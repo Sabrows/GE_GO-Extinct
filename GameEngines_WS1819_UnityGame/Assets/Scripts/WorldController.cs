@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class WorldController : MonoBehaviour
 {
 
     [Header("Health")]
-    [SerializeField]
+    
     private float health;
     [SerializeField]
     private float currCountdownValue;
 
     [SerializeField]
     private float startHealth = 100f;
+
+    [SerializeField]
+    private TMP_Text timer;
 
     public Image healthBar;
 
@@ -33,11 +37,13 @@ public class WorldController : MonoBehaviour
     [SerializeField]
     private GameObject blade;
 
+
     // Use this for initialization
     void Start()
     {
         health = startHealth;
         StartCoroutine(StartCountdown());
+        timer.text = currCountdownValue.ToString();
     }
 
     // Update is called once per frame
@@ -69,6 +75,8 @@ public class WorldController : MonoBehaviour
             Debug.Log("Countdown: " + currCountdownValue);
             yield return new WaitForSeconds(1.0f);
             currCountdownValue--;
+
+            timer.text = currCountdownValue.ToString();
         }
     }
 
